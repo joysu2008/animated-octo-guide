@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true, // allow javascript files
+    "skipLibCheck": true,
+    "strict": false, // relax strictness for js conversion initially
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler", // use bundler resolution
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve", // preserve jsx for next.js/react
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.js", // include js files
+    "**/*.jsx", // include jsx files
+    ".next/types/**/*.ts" // keep next.js generated types
+  ],
+  "exclude": ["node_modules"]
+}
