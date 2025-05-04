@@ -56,7 +56,7 @@ export default function Home() {
        {isFocusScreen && <div className="absolute inset-0 bg-black/60 z-0"></div>}
 
        {/* sidebar trigger positioned top-left */}
-       <div className="absolute top-4 left-4 z-20"> {/* ensure trigger is above overlay */}
+       <div className="absolute w-full h-full top-4 left-4 z-20"> {/* ensure trigger is above overlay */} 
          <Sheet>
            <SheetTrigger asChild>
              {/* adjust trigger style for visibility on dark background */}
@@ -96,17 +96,17 @@ export default function Home() {
             <PixelNotepadIcon className="h-5 w-5" />
           </Button>
           {/* main content area - uses flex to arrange notepad and screen */}
-          <main className="flex flex-1 items-center justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full">
-             {/* main content container */}
-             <div className={cn(
-              "flex items-center justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full max-w-7xl mx-auto transition-all duration-300 ease-in-out",
-              appState.isNotepadOpen && "justify-end md:justify-end",
-             )}
-             style={{
-               marginLeft: isNotepadOpen ? (isHydrated ? 'calc(1/3 * 100%)' : '0') : '0%', // Dynamic margin
-             }}
-           >
-                 {/* notepad container - conditional rendering and positioning */}
+           <main className="flex flex-1 justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full">
+              {/* main content container */}
+              <div className={cn(
+               "flex gap-1 max-w-7xl transition-all duration-300 ease-in-out",
+               appState.isNotepadOpen ? "justify-between" : "justify-center"
+              )}
+              style={{
+                marginLeft: appState.isNotepadOpen ? (isHydrated ? '0' : '0') : '0', // Reset margin
+              }}
+            >
+              {/* notepad container - conditional rendering and positioning */}
                  <div className={cn(
                      "transition-all duration-300 ease-in-out",
                      isNotepadOpen ? "w-1/3 max-w-xs mr-4 opacity-100" : "w-0 mr-0 opacity-0 overflow-hidden" // animate width, margin, opacity
