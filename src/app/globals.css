@@ -1,0 +1,169 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 15% 95%; /* lighter gray-blue */
+    --foreground: 210 10% 20%; /* dark gray-blue */
+    --card: 210 20% 100%; /* white */
+    --card-foreground: 210 10% 15%; /* darker gray-blue */
+    --popover: 210 20% 100%; /* white */
+    --popover-foreground: 210 10% 15%; /* darker gray-blue */
+    --primary: 180 80% 35%; /* stronger teal */
+    --primary-foreground: 0 0% 100%; /* white */
+    --secondary: 210 15% 90%; /* mid gray-blue */
+    --secondary-foreground: 210 10% 10%; /* black */
+    --muted: 210 15% 90%; /* mid gray-blue */
+    --muted-foreground: 210 10% 45%; /* mid gray */
+    --accent: 200 80% 55%; /* brighter calm blue */
+    --accent-foreground: 0 0% 100%; /* white */
+    --destructive: 0 70% 50%; /* stronger red */
+    --destructive-foreground: 0 0% 100%; /* white */
+    --border: 210 10% 80%; /* gray-blue border */
+    --input: 210 10% 85%; /* lighter input gray-blue */
+    --ring: 180 80% 35%; /* stronger teal */
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0rem; /* remove radius */
+    --font-silkscreen: "Silkscreen";
+
+    /* sidebar theme - adjusted */
+    --sidebar-background: 210 20% 100%; /* white card */
+    --sidebar-foreground: 210 10% 15%; /* darker gray-blue text */
+    --sidebar-primary: 180 80% 35%; /* stronger teal */
+    --sidebar-primary-foreground: 0 0% 100%; /* white */
+    --sidebar-accent: 200 80% 55%; /* brighter calm blue */
+    --sidebar-accent-foreground: 0 0% 100%; /* white */
+    --sidebar-border: 210 10% 80%; /* gray-blue border */
+    --sidebar-ring: 180 80% 35%; /* stronger teal */
+  }
+  .dark {
+    /* adjust dark mode defaults if needed */
+     --background: 210 15% 10%; /* dark blue-gray */
+     --foreground: 210 15% 90%; /* light blue-gray */
+     --card: 210 15% 15%; /* slightly lighter dark */
+     --card-foreground: 210 15% 90%; /* light blue-gray */
+     --popover: 210 15% 15%; /* slightly lighter dark */
+     --popover-foreground: 210 15% 90%; /* light blue-gray */
+     --primary: 180 70% 60%; /* lighter strong teal */
+     --primary-foreground: 210 15% 5%; /* very dark blue-gray */
+     --secondary: 210 15% 25%; /* mid dark blue-gray */
+     --secondary-foreground: 210 15% 90%; /* light blue-gray */
+     --muted: 210 15% 25%; /* mid dark blue-gray */
+     --muted-foreground: 210 15% 60%; /* mid light blue-gray */
+     --accent: 200 70% 65%; /* lighter brighter blue */
+     --accent-foreground: 210 15% 5%; /* very dark blue-gray */
+     --destructive: 0 60% 60%; /* lighter strong red */
+     --destructive-foreground: 0 0% 100%; /* white */
+     --border: 210 15% 30%; /* darker border */
+     --input: 210 15% 30%; /* darker input */
+     --ring: 180 70% 60%; /* lighter strong teal */
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    --sidebar-background: 210 15% 12%; /* darker background for sidebar */
+    --sidebar-foreground: 210 15% 85%; /* lighter text */
+    --sidebar-primary: 180 70% 60%; /* lighter strong teal */
+    --sidebar-primary-foreground: 210 15% 5%; /* very dark blue-gray */
+    --sidebar-accent: 200 70% 65%; /* lighter brighter blue */
+    --sidebar-accent-foreground: 210 15% 5%; /* very dark blue-gray */
+    --sidebar-border: 210 15% 30%; /* darker border */
+    --sidebar-ring: 180 70% 60%; /* lighter strong teal */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans; /* use font-sans (silkscreen) */
+        min-height: 100vh;
+    flex-direction: column;
+    /* apply pixelated rendering globally */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    font-smooth: never; /* disable anti-aliasing */
+    -webkit-font-smoothing: none; /* disable anti-aliasing for webkit */
+    -moz-osx-font-smoothing: grayscale; /* might help on firefox */
+  }
+   /* ensure svgs render crisply */
+   svg {
+     shape-rendering: crispEdges;
+   }
+
+   /* ensure images render crisply */
+   img {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+   }
+}
+
+/* add pixelated border style utility */
+@layer components {
+
+  .border-pixel {
+    border-style: solid;
+    border-width: 4px; /* adjust width as needed */
+    border-image-slice: 2;
+    border-image-width: 4px; /* match border-width */
+    border-image-repeat: stretch;
+    border-image-source: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2V4H2V6H4V4H6V2H4V0H2V2H0Z" fill="hsl(var(--border))"/></svg>');
+    border-image-outset: 0;
+  }
+   .border-pixel-white {
+     border-style: solid;
+     border-width: 4px; /* adjust width as needed */
+     border-image-slice: 2;
+     border-image-width: 4px; /* match border-width */
+     border-image-repeat: stretch;
+     border-image-source: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2V4H2V6H4V4H6V2H4V0H2V2H0Z" fill="white"/></svg>');
+     border-image-outset: 0;
+   }
+
+   /* specific side pixel borders */
+   .border-t-pixel {
+     border-top-style: solid;
+     border-top-width: 4px;
+     border-image-slice: 2 2 0 2; /* slice top */
+     border-image-width: 4px 4px 0 4px;
+     border-image-repeat: stretch;
+     border-image-source: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2V4H2V6H4V4H6V2H4V0H2V2H0Z" fill="hsl(var(--border))"/></svg>');
+     border-image-outset: 0;
+   }
+   .border-b-pixel {
+     border-bottom-style: solid;
+     border-bottom-width: 4px;
+     border-image-slice: 0 2 2 2; /* slice bottom */
+     border-image-width: 0 4px 4px 4px;
+     border-image-repeat: stretch;
+     border-image-source: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2V4H2V6H4V4H6V2H4V0H2V2H0Z" fill="hsl(var(--border))"/></svg>');
+     border-image-outset: 0;
+   }
+   .border-l-pixel {
+     border-left-style: solid;
+     border-left-width: 4px;
+     border-image-slice: 2 0 2 2; /* slice left */
+     border-image-width: 4px 0 4px 4px;
+     border-image-repeat: stretch;
+     border-image-source: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2V4H2V6H4V4H6V2H4V0H2V2H0Z" fill="hsl(var(--border))"/></svg>');
+     border-image-outset: 0;
+   }
+   .border-r-pixel {
+     border-right-style: solid;
+     border-right-width: 4px;
+     border-image-slice: 2 2 2 0; /* slice right */
+     border-image-width: 4px 4px 4px 0;
+     border-image-repeat: stretch;
+     border-image-source: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 2V4H2V6H4V4H6V2H4V0H2V2H0Z" fill="hsl(var(--border))"/></svg>');
+     border-image-outset: 0;
+   }
+}
