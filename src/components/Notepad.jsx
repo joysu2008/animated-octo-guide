@@ -13,7 +13,7 @@ const Notepad = () => {
   }
 
   return (
-    <div className="relative h-[400px] w-full max-w-xs p-4 pt-10"> {/* add top padding for header */}
+    <div className="relative h-full w-full max-w-xs p-4 pt-10"> {/* add top padding for header */}
       {/* svg background */}
       <svg
         width="100%"
