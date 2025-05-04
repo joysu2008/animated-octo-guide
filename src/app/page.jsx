@@ -116,8 +116,8 @@ export default function Home() {
                  </div>
 
                  {/* screen content container */}
-                 <div className="w-full max-w-2xl transition-all duration-300 ease-in-out">
-                    {renderScreen()}
+                 <div className="w-[640px] transition-all duration-300 ease-in-out">
+                   {renderScreen()}
                  </div>
              </div>
           </main>
