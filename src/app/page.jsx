@@ -99,8 +99,8 @@ export default function Home() {
           <main className="flex flex-1 items-center justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full">
              {/* main content container */}
              <div className={cn(
-                "flex flex-1 items-start justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full transition-all duration-300 ease-in-out",
-                isNotepadOpen && "justify-end md:justify-end",
+              "flex items-center justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full max-w-7xl mx-auto transition-all duration-300 ease-in-out",
+              appState.isNotepadOpen && "justify-end md:justify-end",
              )}
              style={{
                marginLeft: isNotepadOpen ? (isHydrated ? 'calc(1/3 * 100%)' : '0') : '0%', // Dynamic margin
