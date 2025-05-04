@@ -116,10 +116,7 @@ export default function Home() {
                  </div>
 
                  {/* screen content container */}
-                 <div className={cn(
-                     "transition-all duration-300 ease-in-out",
-                     isNotepadOpen ? "w-2/3 max-w-2xl" : "w-full max-w-2xl" // adjust width based on notepad state
-                 )}>
+                 <div className="w-full max-w-2xl transition-all duration-300 ease-in-out">
                     {renderScreen()}
                  </div>
              </div>
