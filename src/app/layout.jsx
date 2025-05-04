@@ -1,27 +1,24 @@
-import { Silkscreen } from 'next/font/google'; // import silkscreen google font
+
+import { Open_Sans } from 'next/font/google';
 import './globals.css';
 import { AppProvider } from '@/context/AppContext';
 import { Toaster } from '@/components/ui/toaster';
 
-// load silkscreen font with desired weights and assign a css variable
-const silkscreen = Silkscreen({
+const openSans = Open_Sans({
   subsets: ['latin'],
-  weight: ['400', '700'], // load regular and bold weights
-  variable: '--font-silkscreen', // css variable for the font
+  variable: '--font-open-sans',
   display: 'swap',
 });
 
-
 export const metadata = {
-  title: 'FocusFlow', // updated title
-  description: 'Your pixelated study timer companion.', // updated description
+  title: 'FocusFlow',
+  description: 'Your pixelated study timer companion.',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* apply the font variable to the body */}
-      <body className={`${silkscreen.variable} font-sans`}> {/* apply variable and set font-sans as default */}
+      <body className={`${openSans.variable} font-sans`}>
         <AppProvider>
           {children}
           <Toaster />
