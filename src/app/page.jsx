@@ -6,6 +6,7 @@ import HomeScreen from '@/components/screens/HomeScreen';
 import FocusScreen from '@/components/screens/FocusScreen';
 import PostFocusScreen from '@/components/screens/PostFocusScreen';
 import SessionLog from '@/components/SessionLog';
+import Notepad from '@/components/Notepad'; // PLEASEEE PLEASE WORK
 import {
   Sheet,
   SheetContent,
@@ -16,10 +17,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton'; // import skeleton
 import PixelBookOpenIcon from '@/components/icons/PixelBookOpenIcon';
+import PixelNotepadIcon from '@/components/icons/PixelNotepadIcon'; // import notepad icon
 import { cn } from '@/lib/utils'; // import cn for conditional classes
 
 export default function Home() {
-  const { appState, isHydrated } = useAppContext(); // get hydration status
+  const { appState, isHydrated, toggleNotepad } = useAppContext(); // get hydration status
 
   const renderScreen = () => {
     // don't render screen content until hydrated
@@ -76,6 +78,47 @@ export default function Home() {
              {isHydrated ? <SessionLog /> : <Skeleton className="flex-1 m-4" />}
            </SheetContent>
          </Sheet>
+          {/* notepad trigger */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleNotepad}
+            disabled={!isHydrated}
+            aria-label={isNotepadOpen ? "Close Notepad" : "Open Notepad"}
+            aria-pressed={isNotepadOpen}
+            className={cn(
+                "p-1", // added padding
+                isFocusScreen ? "text-white hover:bg-white/20" : "text-foreground hover:bg-accent/10",
+                isNotepadOpen && (isFocusScreen ? "bg-white/20" : "bg-accent/10") // add active state background
+            )}
+           >
+            <PixelNotepadIcon className="h-5 w-5" />
+          </Button>
+          {/* main content area - uses flex to arrange notepad and screen */}
+          <main className="flex flex-1 items-center justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full">
+             {/* main content container */}
+             <div className={cn(
+                 "flex w-full items-start transition-all duration-300 ease-in-out",
+                 isNotepadOpen ? "justify-between" : "justify-center" // adjust justification
+             )}>
+                 {/* notepad container - conditional rendering and positioning */}
+                 <div className={cn(
+                     "transition-all duration-300 ease-in-out",
+                     isNotepadOpen ? "w-1/3 max-w-xs mr-4 opacity-100" : "w-0 mr-0 opacity-0 overflow-hidden" // animate width, margin, opacity
+                 )}>
+                     {isHydrated && isNotepadOpen && <Notepad />}
+                     {!isHydrated && isNotepadOpen && <Skeleton className="h-[400px] w-full" />}
+                 </div>
+
+                 {/* screen content container */}
+                 <div className={cn(
+                     "transition-all duration-300 ease-in-out",
+                     isNotepadOpen ? "w-2/3 max-w-2xl" : "w-full max-w-2xl" // adjust width based on notepad state
+                 )}>
+                    {renderScreen()}
+                 </div>
+             </div>
+          </main>
        </div>
 
        {/* main content area - ensure it's above the overlay */}

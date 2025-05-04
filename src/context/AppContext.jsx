@@ -11,6 +11,8 @@ const defaultAppState = {
   focusGoal: '',
   sessionLog: [], // array of session objects
   currentSession: null, // partial<session> & { starttime?: date } | null
+  isNotepadOpen: false, // default notepad state
+  notepadContent: '', // default notepad content
 };
 
 export const AppProvider = ({ children }) => {
@@ -44,8 +46,12 @@ export const AppProvider = ({ children }) => {
           delete parsedState.currentSession.actualDuration;
         }
 
-        initialState = { ...defaultAppState, ...parsedState };
-
+        initialState = { 
+          ...defaultAppState, 
+          ...parsedState,
+          isNotepadOpen: parsedState.isNotepadOpen ?? false,
+          notepadContent: parsedState.notepadContent ?? ''
+          };
       } catch (error) {
         console.error("failed to parse state from localstorage", error);
       }
@@ -85,6 +91,18 @@ export const AppProvider = ({ children }) => {
     setAppState((prevState) => ({ ...prevState, focusGoal: goal }));
   }, []);
 
+  // --- notepad callbacks ---
+  const toggleNotepad = useCallback(() => {
+    setAppState((prevState) => ({
+      ...prevState,
+      isNotepadOpen: !prevState.isNotepadOpen,
+    }));
+  }, []);
+
+  const setNotepadContent = useCallback((content) => {
+    setAppState((prevState) => ({ ...prevState, notepadContent: content }));
+  }, []);
+  
   // --- session lifecycle callbacks ---
 
   const startSession = useCallback(() => {
@@ -215,6 +233,8 @@ export const AppProvider = ({ children }) => {
      deleteSessionEntry,
      clearSessionLog,
      isHydrated,
+     toggleNotepad, // add notepad functions
+     setNotepadContent, // add notepad functions
   }), [
       appState,
       setScreen,
@@ -226,8 +246,10 @@ export const AppProvider = ({ children }) => {
       endSession,
       deleteSessionEntry,
       clearSessionLog,
-      isHydrated
-  ]);
+      isHydrated,
+      toggleNotepad, // add to dependencies
+      setNotepadContent, // add to dependencies
+]);
 
 
   return (
