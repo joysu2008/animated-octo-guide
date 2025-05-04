@@ -50,13 +50,18 @@ export default function Home() {
         isFocusScreen && "bg-cover bg-center", // apply background only for focus screen
         !isFocusScreen && "bg-background" // use theme background otherwise
       )}
-      style={isFocusScreen ? { backgroundImage: "url('/pixel_bg.gif')" } : {}}
+      style={isFocusScreen ? {
+        backgroundImage: "url('/pixel_bg.gif')",
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
+      } 
+    : {}}
     >
        {/* overlay for focus screen */}
        {isFocusScreen && <div className="absolute inset-0 bg-black/60 z-0"></div>}
 
        {/* sidebar trigger positioned top-left */}
-       <div className="absolute w-full h-full top-4 left-4 z-20"> {/* ensure trigger is above overlay */} 
+       <div className="absolute w-[calc(100%-4rem)] h-[calc(100%-4rem)] top-4 left-4 z-20"> {/* ensure trigger is above overlay */} 
          <Sheet>
            <SheetTrigger asChild>
              {/* adjust trigger style for visibility on dark background */}
@@ -96,7 +101,7 @@ export default function Home() {
             <PixelNotepadIcon className="h-5 w-5" />
           </Button>
           {/* main content area - uses flex to arrange notepad and screen */}
-           <main className="flex flex-1 justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full">
+           <main className="flex flex-1 justify-center items-center p-4 pt-0 md:p-8 md:pt-8 z-10 w-full h-full">
               {/* main content container */}
               <div className={cn(
                "flex gap-1 max-w-7xl transition-all duration-300 ease-in-out",
