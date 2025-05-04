@@ -42,6 +42,7 @@ export default function Home() {
   };
 
   const isFocusScreen = appState.currentScreen === 'focus';
+  const isNotepadOpen = appState.isNotepadOpen;
 
   return (
     <div className={cn(
@@ -98,9 +99,13 @@ export default function Home() {
           <main className="flex flex-1 items-center justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full">
              {/* main content container */}
              <div className={cn(
-                 "flex w-full items-start transition-all duration-300 ease-in-out",
-                 isNotepadOpen ? "justify-between" : "justify-center" // adjust justification
-             )}>
+                "flex flex-1 items-start justify-center p-4 pt-16 md:p-8 md:pt-8 z-10 w-full transition-all duration-300 ease-in-out",
+                isNotepadOpen && "justify-end md:justify-end",
+             )}
+             style={{
+               marginLeft: isNotepadOpen ? (isHydrated ? 'calc(1/3 * 100%)' : '0') : '0%', // Dynamic margin
+             }}
+           >
                  {/* notepad container - conditional rendering and positioning */}
                  <div className={cn(
                      "transition-all duration-300 ease-in-out",
@@ -120,13 +125,6 @@ export default function Home() {
              </div>
           </main>
        </div>
-
-       {/* main content area - ensure it's above the overlay */}
-       <main className="flex flex-1 items-center justify-center p-4 pt-16 md:p-8 md:pt-8 z-10"> {/* added z-10 */}
-          <div className="w-full max-w-2xl">
-             {renderScreen()}
-          </div>
-       </main>
     </div>
   );
 }

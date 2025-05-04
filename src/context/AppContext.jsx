@@ -51,7 +51,7 @@ export const AppProvider = ({ children }) => {
           ...parsedState,
           isNotepadOpen: parsedState.isNotepadOpen ?? false,
           notepadContent: parsedState.notepadContent ?? ''
-          };
+        };
       } catch (error) {
         console.error("failed to parse state from localstorage", error);
       }
@@ -234,7 +234,7 @@ export const AppProvider = ({ children }) => {
      clearSessionLog,
      isHydrated,
      toggleNotepad, // add notepad functions
-     setNotepadContent, // add notepad functions
+     setNotepadContent // add notepad functions
   }), [
       appState,
       setScreen,
@@ -248,7 +248,7 @@ export const AppProvider = ({ children }) => {
       clearSessionLog,
       isHydrated,
       toggleNotepad, // add to dependencies
-      setNotepadContent, // add to dependencies
+      setNotepadContent // add to dependencies
 ]);
 
 
