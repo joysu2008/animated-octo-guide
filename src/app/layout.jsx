@@ -1,12 +1,13 @@
 
-import { Open_Sans } from 'next/font/google';
+import { Silkscreen } from 'next/font/google';
 import './globals.css';
 import { AppProvider } from '@/context/AppContext';
 import { Toaster } from '@/components/ui/toaster';
 
-const openSans = Open_Sans({
+const silkscreen = Silkscreen({
   subsets: ['latin'],
-  variable: '--font-open-sans',
+  weight: ['400', '700'],
+  variable: '--font-silkscreen',
   display: 'swap',
 });
 
@@ -18,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${openSans.variable} font-sans`}>
+      <body className={`${silkscreen.variable} font-sans`}>
         <AppProvider>
           {children}
           <Toaster />
