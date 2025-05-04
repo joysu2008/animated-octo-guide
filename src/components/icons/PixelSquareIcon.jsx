@@ -3,9 +3,9 @@ import { cn } from '@/lib/utils';
 
 const PixelSquareIcon = ({ className, ...props }) => (
   <svg
-    width="16" // adjust size as needed
-    height="16"
-    viewBox="0 0 16 16"
+    width="5" // adjust size as needed
+    height="5"
+    viewBox="0 0 5 5"
     xmlns="http://www.w3.org/2000/svg"
     className={cn("inline-block", className)} // ensure it behaves like an icon
     shapeRendering="crispEdges"
@@ -13,7 +13,7 @@ const PixelSquareIcon = ({ className, ...props }) => (
     {...props}
   >
     {/* pixel square */}
-    <path d="M3 3 V13 H13 V3 Z M4 4 H12 V12 H4 Z" />
+    <path d="M0 0 0 2V5 5H5V0H1V1H4 4V4H1V0H0" />
   </svg>
 );
 

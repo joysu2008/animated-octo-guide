@@ -3,9 +3,9 @@ import { cn } from '@/lib/utils';
 
 const PixelStarIcon = ({ className, filled, ...props }) => (
   <svg
-    width="16" // adjust size as needed
-    height="16"
-    viewBox="0 0 16 16"
+    width="15" // adjust size as needed
+    height="17"
+    viewBox="0 0 15 17"
     xmlns="http://www.w3.org/2000/svg"
     className={cn("inline-block", className)} // ensure it behaves like an icon
     shapeRendering="crispEdges"
@@ -15,7 +15,7 @@ const PixelStarIcon = ({ className, filled, ...props }) => (
     {...props}
   >
     {/* simple pixel star */}
-    <path d="M8 1 L10 5 L15 6 L11 10 L12 15 L8 13 L4 15 L5 10 L1 6 L6 5 Z" />
+    <path d="M0 6H1V5H6V3H7V1H8V0H9V1H10V3H11V5H16V6H17V7H16V8H15V9H13V11H14V13H15V14H14V15H12V14H10V13H9V12 12H8V13H7V14H5V15H3V14H2V13H3V11H4V9H2V8H1V7H0V6Z" />
   </svg>
 );
 

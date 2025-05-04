@@ -3,9 +3,9 @@ import { cn } from '@/lib/utils';
 
 const PixelPlayIcon = ({ className, ...props }) => (
   <svg
-    width="16" // adjust size as needed
-    height="16"
-    viewBox="0 0 16 16"
+    width="3" // adjust size as needed
+    height="5"
+    viewBox="0 0 3 5"
     xmlns="http://www.w3.org/2000/svg"
     className={cn("inline-block", className)} // ensure it behaves like an icon
     shapeRendering="crispEdges"
@@ -13,7 +13,7 @@ const PixelPlayIcon = ({ className, ...props }) => (
     {...props}
   >
     {/* simple pixel triangle */}
-    <path d="M4 3 V13 L12 8 Z" />
+    <path d="M0 0V5H1V4H2V3H3V2H2V1 1H1V0H0" />
   </svg>
 );
 

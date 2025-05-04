@@ -12,8 +12,8 @@ const silkscreen = Silkscreen({
 });
 
 export const metadata = {
-  title: 'FocusFlow',
-  description: 'Your pixelated study timer companion.',
+  title: 'Re(su)me',
+  description: 'A pixelated study timer companion, made by Su.',
 };
 
 export default function RootLayout({ children }) {
