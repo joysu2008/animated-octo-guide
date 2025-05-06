@@ -6,7 +6,7 @@ import HomeScreen from '@/components/screens/HomeScreen';
 import FocusScreen from '@/components/screens/FocusScreen';
 import PostFocusScreen from '@/components/screens/PostFocusScreen';
 import SessionLog from '@/components/SessionLog';
-import Notepad from '@/components/Notepad'; // PLEASEEE PLEASE WORK
+import Notepad from '@/components/Notepad'; 
 import {
   Sheet,
   SheetContent,
@@ -22,6 +22,7 @@ import { cn } from '@/lib/utils'; // import cn for conditional classes
 
 export default function Home() {
   const { appState, isHydrated, toggleNotepad } = useAppContext(); // get hydration status
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   const renderScreen = () => {
     // don't render screen content until hydrated
@@ -44,6 +45,42 @@ export default function Home() {
   const isFocusScreen = appState.currentScreen === 'focus';
   const isNotepadOpen = appState.isNotepadOpen;
 
+  const handleFullScreenToggle = useCallback(async () => {
+    if (!document.fullscreenEnabled) {
+      console.warn("fullscreen api not supported or enabled in this browser.");
+      return;
+    }
+
+    if (!document.fullscreenElement) {
+      try {
+        await document.documentElement.requestFullscreen();
+        setIsFullScreen(true);
+      } catch (err) {
+        console.error(`error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        setIsFullScreen(false);
+      }
+    } else {
+      try {
+        await document.exitFullscreen();
+        setIsFullScreen(false);
+      } catch (err) {
+        console.error(`error attempting to exit full-screen mode: ${err.message} (${err.name})`);
+        setIsFullScreen(true); // stay in fullscreen if exit fails
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const fullscreenChangeHandler = () => {
+      setIsFullScreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', fullscreenChangeHandler);
+    return () => {
+      document.removeEventListener('fullscreenchange', fullscreenChangeHandler);
+    };
+  }, []);
+  
   return (
     <div className={cn(
         "relative min-h-screen flex flex-col",
@@ -99,6 +136,23 @@ export default function Home() {
             )}
            >
             <PixelNotepadIcon className="h-5 w-5" />
+          </Button>
+
+          {/* right-aligned icon (fullscreen) */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleFullScreenToggle}
+            disabled={!isHydrated} // disable if not hydrated, consider disabling if fullscreen api not supported
+            aria-label={isFullScreen ? "exit fullscreen" : "enter fullscreen"}
+            aria-pressed={isFullScreen}
+            className={cn(
+              "p-1",
+              isFocusScreen ? "text-white hover:bg-white/20" : "text-foreground hover:bg-accent/10",
+              isFullScreen && (isFocusScreen ? "bg-white/20" : "bg-accent/10")
+            )}
+          >
+            {isFullScreen ? <PixelMinimizeIcon className="h-5 w-5" /> : <PixelMaximizeIcon className="h-5 w-5" />}
           </Button>
           {/* main content area - uses flex to arrange notepad and screen */}
            <main className="flex flex-1 justify-center items-center p-4 pt-0 md:p-8 md:pt-8 z-10 w-full h-full">
