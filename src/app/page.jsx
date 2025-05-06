@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import HomeScreen from '@/components/screens/HomeScreen';
 import FocusScreen from '@/components/screens/FocusScreen';
@@ -19,6 +19,8 @@ import { Skeleton } from '@/components/ui/skeleton'; // import skeleton
 import PixelBookOpenIcon from '@/components/icons/PixelBookOpenIcon';
 import PixelNotepadIcon from '@/components/icons/PixelNotepadIcon'; // import notepad icon
 import { cn } from '@/lib/utils'; // import cn for conditional classes
+import PixelMaximizeIcon from '@/components/icons/PixelMaximizeIcon'; // Import the PixelMaximizeIcon
+import PixelMinimizeIcon from '@/components/icons/PixelMinimizeIcon'; // Assuming you have this as well
 
 export default function Home() {
   const { appState, isHydrated, toggleNotepad } = useAppContext(); // get hydration status

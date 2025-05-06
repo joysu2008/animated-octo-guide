@@ -4,28 +4,17 @@ import { cn } from '@/lib/utils';
 
 const PixelMinimizeIcon = ({ className, ...props }) => (
   <svg
-    width="20" // adjust size as needed
-    height="20"
-    viewBox="0 0 20 20"
+    width="6" // adjust size as needed
+    height="6"
+    viewBox="0 0 6 6"
     xmlns="http://www.w3.org/2000/svg"
     className={cn("inline-block", className)} // ensure it behaves like an icon
     shapeRendering="crispEdges"
     fill="currentColor" // inherit color from parent
     {...props}
   >
-    {/* pixelated minimize/exit fullscreen icon (four arrows pointing inwards) */}
-    {/* top-left arrow */}
-    <path d="M6 3 H3 V6 H4 V5 H5 V4 H6 Z" />
-    <path d="M6 6 H5 V5 H6 Z" />
-    {/* top-right arrow */}
-    <path d="M17 6 H14 V3 H15 V4 H16 V5 H17 Z" />
-    <path d="M14 6 H15 V5 H14 Z" />
-    {/* bottom-left arrow */}
-    <path d="M6 17 H3 V14 H4 V15 H5 V16 H6 Z" />
-    <path d="M6 14 H5 V15 H6 Z" />
-    {/* bottom-right arrow */}
-    <path d="M17 14 H14 V17 H15 V16 H16 V15 H17 Z" />
-    <path d="M14 14 H15 V15 H14 Z" />
+    {/* four arrows pointing inwards */}
+    <path d="M1 0V1H0V2H2V0M4 0V2H6V1H5V0H4M4 4V6H5V5H6V4H4M2 4V6H1M1 6V5H0V4H2" />
   </svg>
 );
 

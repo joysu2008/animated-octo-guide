@@ -4,28 +4,17 @@ import { cn } from '@/lib/utils';
 
 const PixelMaximizeIcon = ({ className, ...props }) => (
   <svg
-    width="20" // adjust size as needed
-    height="20"
-    viewBox="0 0 20 20"
+    width="6" // adjust size as needed
+    height="6"
+    viewBox="0 0 6 6"
     xmlns="http://www.w3.org/2000/svg"
     className={cn("inline-block", className)} // ensure it behaves like an icon
     shapeRendering="crispEdges"
     fill="currentColor" // inherit color from parent
     {...props}
   >
-    {/* pixelated maximize/fullscreen icon (four arrows pointing outwards) */}
-    {/* top-left arrow */}
-    <path d="M3 6 H6 V5 H5 V4 H4 V3 H3 Z" />
-    <path d="M3 3 H4 V4 H3 Z" />
-    {/* top-right arrow */}
-    <path d="M14 3 H17 V6 H16 V5 H15 V4 H14 Z" />
-    <path d="M16 3 H17 V4 H16 Z" />
-    {/* bottom-left arrow */}
-    <path d="M3 14 H6 V17 H5 V16 H4 V15 H3 Z" />
-    <path d="M3 16 H4 V17 H3 Z" />
-    {/* bottom-right arrow */}
-    <path d="M14 17 H17 V14 H16 V15 H15 V16 H14 Z" />
-    <path d="M16 16 H17 V17 H16 Z" />
+    {/* four arrows pointing outwards */}
+    <path d="M0 0V2H1V1H2V0ZM4 0H6V2H5V1H4V0M6 4V6H4V5H5V4H6M0 4V6H2V5H1V4H0" />
   </svg>
 );
 
